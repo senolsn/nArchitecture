@@ -12,11 +12,11 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Brands.Commands.CreateBrand
 {
-    public class CreateBrandComand:IRequest<CreatedBrandDto>
+    public class CreateBrandCommand:IRequest<CreatedBrandDto>
     {
         public string Name { get; set; }
 
-        public class CreateBrandCommandHandler : IRequestHandler<CreateBrandComand, CreatedBrandDto>
+        public class CreateBrandCommandHandler : IRequestHandler<CreateBrandCommand, CreatedBrandDto>
         {
 
             private readonly IBrandRepository _brandRepository;
@@ -30,7 +30,7 @@ namespace Application.Features.Brands.Commands.CreateBrand
                 _brandBusinessRules = brandBusinessRules;
             }
 
-            public async Task<CreatedBrandDto> Handle(CreateBrandComand request, CancellationToken cancellationToken)
+            public async Task<CreatedBrandDto> Handle(CreateBrandCommand request, CancellationToken cancellationToken)
             {
 
                 await _brandBusinessRules.BrandNameCanNotBeDuplicatedWhenInserted(request.Name);
